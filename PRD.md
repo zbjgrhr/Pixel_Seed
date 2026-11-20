@@ -281,7 +281,7 @@ Response:
 ### AI集成 (已实现)
 - **图像生成模型**：Qwen-Image (通过DashScope API)
 - **API端点**：https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation
-- **认证方式**：Bearer Token (API Key: sk-84083f55216c4c53ad9ebf77e3f2dc7f)
+- **认证方式**：Bearer Token (API Key: REDACTED_DASHSCOPE_API_KEY)
 - **调用方式**：HTTP同步接口，发送POST请求后立即返回结果
 - **图像规格**：角色 1328x1328px，背景 1664x928px，地面和障碍物支持多种尺寸
 - **并发控制**：Promise.all 并行处理多种图像类型生成
@@ -348,7 +348,7 @@ components/
 ### DashScope API集成细节
 - **请求头配置**：
   - Content-Type: application/json
-  - Authorization: Bearer sk-84083f55216c4c53ad9ebf77e3f2dc7f
+  - Authorization: Bearer REDACTED_DASHSCOPE_API_KEY
 - **请求体结构**：使用messages数组格式，支持prompt_extend自动优化
 - **参数配置**：
   - negative_prompt: 负面提示词（可选）
@@ -479,7 +479,7 @@ sequenceDiagram
 1. **请求接收**：接收前端POST请求，验证参数
 2. **提示词构建**：根据主题和用户输入构建具体的提示词
 3. **并行生成**：同时调用DashScope Qwen-Image API生成角色和背景
-   - 使用Bearer Token认证 (sk-84083f55216c4c53ad9ebf77e3f2dc7f)
+   - 使用Bearer Token认证 (REDACTED_DASHSCOPE_API_KEY)
    - 发送HTTP POST请求到DashScope端点
    - 角色生成使用1328*1328尺寸，背景生成使用1920*1080尺寸
 4. **图像处理**：对生成的图像进行格式转换和优化
@@ -573,7 +573,7 @@ export async function POST(request: NextRequest) {
 ```typescript
 // API配置
 const DASHSCOPE_API_URL = 'https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation'
-const API_KEY = 'sk-84083f55216c4c53ad9ebf77e3f2dc7f'
+const API_KEY = 'REDACTED_DASHSCOPE_API_KEY'
 
 // 调用函数
 async function callDashScopeAPI(prompt: string, type: 'character' | 'background', size: string = '1328*1328'): Promise<string> {
